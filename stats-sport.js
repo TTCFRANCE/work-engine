@@ -1,7 +1,5 @@
-// app.js
-const CLIENT_ID = '164649';
-const CLIENT_SECRET = '9870b78a78a75919e6e363ba785a4473ce1a3697';
-const REDIRECT_URI = "https://ttcfrance.github.io/work-engine/"; // ou ton vrai domaine
+let isAuthenticated = false;
+let runs = [];
 
 const openBtn = document.getElementById('openModal');
 const closeBtn = document.getElementById('closeModal');
@@ -11,13 +9,17 @@ const runList = document.getElementById('runList');
 const recordTable = document.getElementById('recordTable');
 const kmChart = document.getElementById('kmChart').getContext('2d');
 
-let runs = [];
-
 openBtn.onclick = () => modal.classList.remove('hidden');
 closeBtn.onclick = () => modal.classList.add('hidden');
 
 runForm.onsubmit = function (e) {
   e.preventDefault();
+
+  if (!isAuthenticated) {
+    alert("Veuillez vous connecter à Strava pour ajouter une séance.");
+    return;
+  }
+
   const date = runForm.elements['date'].value;
   const distance = parseFloat(runForm.elements['distance'].value);
   const time = parseFloat(runForm.elements['time'].value);
@@ -65,55 +67,50 @@ runForm.onsubmit = function (e) {
   modal.classList.add('hidden');
 };
 
-document.getElementById('connectStrava').addEventListener('click', () => {
-  const scope = 'activity:read_all';
-  const authUrl = `https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&approval_prompt=force&scope=${scope}`;
-  window.location.href = authUrl;
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+
+  if (code) {
+    fetch('https://www.strava.com/oauth/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        client_id: '164649',
+        client_secret: '9870b78a78a75919e6e363ba785a4473ce1a3697',
+        code: code,
+        grant_type: 'authorization_code'
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      localStorage.setItem('strava_token', data.access_token);
+      isAuthenticated = true;
+      openBtn.disabled = false;
+      enableFormFields();
+    });
+  } else {
+    openBtn.disabled = true;
+    disableFormFields();
+  }
+
+  document.getElementById('connectStrava').onclick = () => {
+    window.location.href = `https://www.strava.com/oauth/authorize?client_id=TON_CLIENT_ID&response_type=code&redirect_uri=${window.location.origin}&approval_prompt=force&scope=activity:read_all`;
+  };
 });
 
-window.onload = async () => {
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('code')) {
-    const code = params.get('code');
-    const token = await exchangeToken(code);
-    if (token) {
-      fetchActivities(token);
-    }
-  }
-};
-
-async function exchangeToken(code) {
-  const response = await fetch('https://www.strava.com/oauth/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      code,
-      grant_type: 'authorization_code'
-    })
+function enableFormFields() {
+  ['date', 'distance', 'time'].forEach(name => {
+    const input = document.querySelector(`input[name="${name}"]`);
+    if (input) input.removeAttribute('disabled');
   });
-  const data = await response.json();
-  return data.access_token;
 }
 
-async function fetchActivities(token) {
-  const res = await fetch('https://www.strava.com/api/v3/athlete/activities?per_page=100', {
-    headers: { Authorization: `Bearer ${token}` }
+function disableFormFields() {
+  ['date', 'distance', 'time'].forEach(name => {
+    const input = document.querySelector(`input[name="${name}"]`);
+    if (input) input.setAttribute('disabled', true);
   });
-  const activities = await res.json();
-  activities.forEach(act => {
-    if (act.type === 'Run') {
-      const date = act.start_date_local.split('T')[0];
-      const distance = act.distance / 1000;
-      const time = act.elapsed_time / 60;
-      const pace = (time / distance).toFixed(2);
-      runs.push({ date, distance, time, pace });
-    }
-  });
-  updateRuns();
-  updateRecords();
-  updateChart();
 }
 
 function updateRuns() {
