@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.getElementById('connectStrava').onclick = () => {
-    window.location.href = `https://www.strava.com/oauth/authorize?client_id=TON_CLIENT_ID&response_type=code&redirect_uri=${window.location.origin}&approval_prompt=force&scope=activity:read_all`;
+    window.location.href = `https://www.strava.com/oauth/authorize?client_id=164649&response_type=code&redirect_uri=https://ttcfrance.github.io/work-engine/&approval_prompt=force&scope=activity:read_all`;
   };
 });
 
