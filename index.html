@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkEngine</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Server</h2>
+        <ul>
+            <li><a href="#">Application</a></li>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">Colony</a></li>
+            <li><a href="#">Add Cluster</a></li>
+            <li><a href="#">Image</a></li>
+            <li><a href="#">Host</a></li>
+            <li><a href="#">Script</a></li>
+            <li><a href="#">Toolkit</a></li>
+            <li><a href="#">Cloud Account</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <input type="text" placeholder="Rechercher des application...">
+            <img src="logo.png" alt="WorkEngine">
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="version">V1.0.0</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 48 48"><mask id="ipTTimer0"><g fill="none" stroke="#fff" stroke-width="4"><circle cx="24" cy="28" r="16" fill="#555"/><path stroke-linecap="round" stroke-linejoin="round" d="M28 4h-8m4 0v8m11 4l3-3M24 28v-6m0 6h-6"/></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipTTimer0)"/></svg>
+                <h3>Pomodoro timer</h3>
+                <p>Name: Théo Chesnel</p>
+                <p>Status: Published</p>
+                <button class="btn-more" data-popup="1">Plus...</button>
+                <button class="play-button" onclick="window.open('POMODORO/pomodoro.html', '_blank');">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="version">V1.0.0</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="-2 -2 24 24"><path fill="currentColor" d="M6 0h8a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6zm0 2a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V6a4 4 0 0 0-4-4H6zm6 7h3a1 1 0 0 1 0 2h-3a1 1 0 0 1 0-2zm-2 4h5a1 1 0 0 1 0 2h-5a1 1 0 0 1 0-2zm0-8h5a1 1 0 0 1 0 2h-5a1 1 0 1 1 0-2zm-4.172 5.243L7.95 8.12a1 1 0 1 1 1.414 1.415l-2.828 2.828a1 1 0 0 1-1.415 0L3.707 10.95a1 1 0 0 1 1.414-1.414l.707.707z"/></svg>
+                <h3>Trello</h3>
+                <p>Name: Théo Chesnel</p>
+                <p>Status: Published</p>
+                <button class="btn-more" data-popup="2">Plus...</button>
+                <button class="play-button" onclick="window.open('Trello/trello.html', '_blank');">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="version">V1.0.0</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 20l7-7m-7 7v-6a1 1 0 0 1 1-1h6V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7"/></svg>
+                <h3>Notes</h3>
+                <p>Name: Théo Chesnel</p>
+                <p>Status: Published</p>  
+                <button class="btn-more" data-popup="3">Plus...</button>
+                <button class="play-button" onclick="window.open('STICKY NOTE/sticky-note.html', '_blank');">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Add more cards as necessary -->
+        </div>
+    </div>
+
+    <!--POP-UP-->
+    <div id="popup-1" class="popup">
+        <div class="popup-content">
+          <span class="close-btn">&times;</span>
+          <h2>Méthode pomodoro</h2><br>
+          <p>Travaillez intensément pendant 25 minutes, puis rechargez-vous en 5 minutes. Une méthode simple pour rester concentré et libérer votre potentiel !</p>
+        </div>
+      </div>
+
+    <div id="popup-2" class="popup">
+        <div class="popup-content">
+          <span class="close-btn">&times;</span>
+          <h2>Trello</h2><br>
+          <p>Gagnez en clarté et en efficacité avec notre tableau de tâches inspiré de Trello. Glissez vos idées, organisez vos projets en colonnes, visualisez votre progression en un coup d’œil, et collaborez facilement. Simple, intuitif et redoutablement efficace pour rester maître de votre productivité.</p>
+        </div>
+    </div>
+
+    <div id="popup-3" class="popup">
+        <div class="popup-content">
+          <span class="close-btn">&times;</span>
+          <h2>Notes</h2><br>
+          <p>Libérez votre esprit : notez, organisez, retrouvez tout en un clin d’œil. Notre outil de prise de notes vous accompagne partout, pour ne plus jamais laisser filer une idée. Léger, rapide et pensé pour rester concentré sur l’essentiel.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
