@@ -1,7 +1,7 @@
 // app.js
 const CLIENT_ID = '164649';
 const CLIENT_SECRET = '9870b78a78a75919e6e363ba785a4473ce1a3697';
-const REDIRECT_URI = 'work-engine.talk4fun.net'; // ou ton vrai domaine
+const REDIRECT_URI = 'https://ttcfrance.github.io/work-engine/'; // ou ton vrai domaine
 
 const openBtn = document.getElementById('openModal');
 const closeBtn = document.getElementById('closeModal');
