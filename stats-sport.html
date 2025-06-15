@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Suivi Course à Pied</title>
+  <link rel="stylesheet" href="stats-sport.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="left-column">
+      <div class="top-half">
+        <h2>Kilomètres par jour</h2>
+        <button onclick="toggleView()">Changer vue</button>
+        <canvas id="kmChart"></canvas>
+        <table id="kmTable" class="hidden"></table>
+      </div>
+      <div class="bottom-half">
+        <h2>Sorties</h2>
+        <div id="runList"></div>
+      </div>
+    </div>
+    <div class="right-column">
+      <h2>Records personnels</h2>
+      <table>
+        <thead>
+          <tr><th>Distance (km)</th><th>Record</th><th>Moyenne</th></tr>
+        </thead>
+        <tbody id="recordTable"></tbody>
+      </table>
+      <button id="openModal">Ajouter une séance</button>
+      <button id="connectStrava">Connexion Strava</button>
+    </div>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+      <form id="runForm">
+        <label>Date: <input type="date" name="date" required></label><br>
+        <label>Distance (km): <input type="number" step="0.01" name="distance"></label><br>
+        <label>Temps (min): <input type="number" step="0.1" name="time"></label><br>
+        <label>Importer GPX: <input type="file" name="strava" accept=".gpx"></label><br>
+        <button type="submit">Ajouter</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="stats-sport.js"></script>
+</body>
+</html>
