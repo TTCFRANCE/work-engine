@@ -5,6 +5,11 @@
   <title>Suivi Course à Pied</title>
   <link rel="stylesheet" href="stats-sport.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
 </head>
 <body>
   <div class="container">
@@ -24,12 +29,30 @@
       <h2>Records personnels</h2>
       <table>
         <thead>
-          <tr><th>Distance (km)</th><th>Record</th><th>Moyenne</th></tr>
+          <tr><th>Distance (km)</th><th>Record (min)</th><th>Moyenne (min)</th></tr>
         </thead>
         <tbody id="recordTable"></tbody>
       </table>
       <button id="connectStrava">Connexion Strava</button>
-      <!-- Suppression totale du bouton et modal ajout -->
+    </div>
+  </div>
+
+  <!-- Modal détails sortie -->
+  <div id="detailsModal" class="modal hidden">
+    <div class="modal-content details-content">
+      <span id="closeDetails" class="close">&times;</span>
+      <h3>Détails de la sortie</h3>
+      <div id="detailsBody">
+        <p><strong>Date :</strong> <span id="detailDate"></span></p>
+        <p><strong>Distance :</strong> <span id="detailDistance"></span> km</p>
+        <p><strong>Temps total :</strong> <span id="detailTime"></span> min</p>
+        <p><strong>Allure moyenne :</strong> <span id="detailPace"></span> min/km</p>
+        <p><strong>Dénivelé positif :</strong> <span id="detailElevation"></span> m</p>
+        <p><strong>Calories :</strong> <span id="detailCalories"></span> kcal</p>
+        <h4>Temps intermédiaires (min/km):</h4>
+        <ul id="detailSplits"></ul>
+        <div id="map" style="height: 300px; margin-top: 15px;"></div>
+      </div>
     </div>
   </div>
 
