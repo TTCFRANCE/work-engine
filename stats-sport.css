@@ -18,25 +18,60 @@ body {
   border-radius: 12px;
   margin: 20px;
   overflow: hidden;
+  position: relative;
+}
+
+/* Séparateur vertical moderne */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, #02aab0, #00c6a7);
+  border-radius: 1px;
+  transform: translateX(-50%);
+  opacity: 0.3;
+  z-index: 10;
 }
 
 .left-column {
   width: 50%;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #e0e4e8;
+  border-right: none; /* on supprime la bordure droite précédente */
+  position: relative;
+}
+
+/* Séparateur horizontal moderne dans la colonne gauche */
+.left-column::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: linear-gradient(to right, #00c6a7, #02aab0);
+  border-radius: 1px;
+  opacity: 0.2;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .top-half,
 .bottom-half {
-  flex: 1;
+  flex: 1 1 50%;
   padding: 2rem 2.5rem;
   overflow-y: auto;
-  border-bottom: 1px solid #e0e4e8;
 }
 
 .top-half {
-  border-bottom: 1px solid #e0e4e8;
+  padding-bottom: 1.5rem;
+}
+
+.bottom-half {
+  padding-top: 1.5rem;
 }
 
 .right-column {
@@ -139,19 +174,17 @@ td {
   display: none;
 }
 
-/* Modal styles modernisés */
+/* Modal styles modernes */
 .modal {
-  display: none !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  position: static !important;
-  height: 0 !important;
-  width: 0 !important;
-  overflow: hidden !important;
-  z-index: -1 !important;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(20, 20, 20, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
 }
-
 
 .modal-content {
   background: white;
@@ -232,4 +265,3 @@ td {
   background-color: #02aab0;
   border-radius: 8px;
 }
-
