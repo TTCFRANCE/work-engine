@@ -2,48 +2,22 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Suivi Course à Pied</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mes Stats Strava</title>
+  <link rel="stylesheet" href="stats-sport.css"/>
 </head>
 <body>
   <div class="container">
-    <div class="left-column">
-      <div class="top-half">
-        <h2>Kilomètres par jour</h2>
-        <button onclick="toggleView()">Changer vue</button>
-        <canvas id="kmChart"></canvas>
-        <table id="kmTable" class="hidden"></table>
-      </div>
-      <div class="bottom-half">
-        <h2>Sorties</h2>
-        <div id="runList"></div>
-      </div>
-    </div>
-    <div class="right-column">
-      <h2>Records personnels</h2>
-      <table>
-        <thead>
-          <tr><th>Distance (km)</th><th>Record</th><th>Moyenne</th></tr>
-        </thead>
-        <tbody id="recordTable"></tbody>
-      </table>
-      <button id="openModal">Ajouter une séance</button>
-      <button id="connectStrava">Connexion Strava</button>
+    <h1>📊 Mes Statistiques Strava</h1>
+    <button id="connect">Se connecter à Strava</button>
+    <div id="stats" class="hidden">
+      <h2>Résumé</h2>
+      <div id="summary"></div>
+
+      <h2>Prédictions</h2>
+      <div id="predictions"></div>
     </div>
   </div>
-
-  <!-- Popup Modal -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span id="closeModal" class="close">&times;</span>
-      <form id="runForm">
-        <label>Importer GPX: <input type="file" name="strava" accept=".gpx"></label><br>
-        <button type="submit">Ajouter</button>
-      </form>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
+  <script src="stats-sport.js"></script>
 </body>
 </html>
