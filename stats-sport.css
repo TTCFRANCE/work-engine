@@ -174,16 +174,21 @@ td {
   display: none;
 }
 
-/* Modal styles modernes */
+/* Modal styles modernes - cachée par défaut */
 .modal {
+  display: none; /* cachée par défaut */
   position: fixed;
   inset: 0;
   background-color: rgba(20, 20, 20, 0.6);
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   padding: 1rem;
+}
+
+/* Affiche la modal quand on ajoute la classe "show" */
+.modal.show {
+  display: flex;
 }
 
 .modal-content {
@@ -199,15 +204,6 @@ td {
   color: #34495e;
 }
 
-.details-content h3 {
-  margin-top: 0;
-  color: #056b6d;
-  font-weight: 700;
-  font-size: 1.6rem;
-  letter-spacing: -0.01em;
-  margin-bottom: 1rem;
-}
-
 .close {
   position: absolute;
   right: 20px;
@@ -221,6 +217,15 @@ td {
 
 .close:hover {
   color: #02aab0;
+}
+
+.details-content h3 {
+  margin-top: 0;
+  color: #056b6d;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
 }
 
 #detailsBody p {
