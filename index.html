@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Suivi Course à Pied</title>
-  <link rel="stylesheet" href="stats-sport.css">
+  <link rel="stylesheet" href="stats-sport.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -28,19 +28,8 @@
         </thead>
         <tbody id="recordTable"></tbody>
       </table>
-      <button id="openModal" disabled>Ajouter une séance</button>
       <button id="connectStrava">Connexion Strava</button>
-    </div>
-  </div>
-
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="closeModal">&times;</span>
-      <!-- Formulaire d'ajout manuel désactivé pour forcer connexion Strava -->
-      <form id="runForm" style="pointer-events:none; opacity: 0.5;">
-        <label>Importer GPX: <input type="file" name="strava" accept=".gpx" disabled></label><br>
-        <button type="submit" disabled>Ajouter</button>
-      </form>
+      <!-- Suppression totale du bouton et modal ajout -->
     </div>
   </div>
 
